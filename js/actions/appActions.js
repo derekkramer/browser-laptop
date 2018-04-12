@@ -1904,25 +1904,17 @@ const appActions = {
     })
   },
 
-  onReferralCodeRead: function (body) {
+  onReferralCodeRead: function (downloadId, promoCode) {
     dispatch({
       actionType: appConstants.APP_ON_REFERRAL_CODE_READ,
-      body
+      downloadId,
+      promoCode
     })
   },
 
   onReferralCodeFail: function () {
     dispatch({
       actionType: appConstants.APP_ON_REFERRAL_CODE_FAIL
-    })
-  },
-
-  onFetchReferralHeaders: function (error, response, body) {
-    dispatch({
-      actionType: appConstants.APP_ON_FETCH_REFERRAL_HEADERS,
-      error,
-      response,
-      body
     })
   },
 
