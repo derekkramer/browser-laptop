@@ -17,6 +17,7 @@ const fs = require('fs')
 const path = require('path')
 
 const isDarwin = process.platform === 'darwin'
+const promoCodeFilenameRegex = /-([a-zA-Z\d]{3}\d{3})\s?(?:\(\d+\))?$/g
 const debugTabEventsFlagName = '--debug-tab-events'
 
 let appInitialized = false
@@ -165,9 +166,8 @@ const api = module.exports = {
     // parse promo code from installer path
     // first, get filename
     const fileName = path.win32.parse(installerPath).name
-    const promoCodeFilenameRegex = /-(([a-zA-Z\d]{3}\d{3})|([a-zA-Z]{1,}-[a-zA-Z]{1,}))\s?(?:\(\d+\))?$/g
     const matches = promoCodeFilenameRegex.exec(fileName)
-    if (matches && matches.length > 1) {
+    if (matches && matches.length === 2) {
       return matches[1]
     }
     return null
